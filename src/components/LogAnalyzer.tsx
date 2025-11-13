@@ -10,7 +10,17 @@ interface LogAnalyzerProps {
 }
 
 export const LogAnalyzer = ({ onAnalyze }: LogAnalyzerProps) => {
-  const [logInput, setLogInput] = useState("");
+  const [logInput, setLogInput] = useState(`2024-01-15 10:30:45 EventID:4688 Process created: powershell.exe -enc JABhAD0AJwBoAHQAdABwADoALwAvAG0AYQBsAGkAYwBpAG8AdQBzAC4AYwBvAG0AJwA=
+2024-01-15 10:31:12 EventID:4688 Process created: cmd.exe /c echo malware > C:\\Windows\\Temp\\backdoor.exe
+2024-01-15 10:32:03 Security Alert: mimikatz.exe detected attempting credential theft
+2024-01-15 10:33:21 EventID:4688 Process created: rundll32.exe javascript:alert('malware')
+2024-01-15 10:34:15 EventID:4688 Process created: schtasks /create /tn "SystemUpdate" /tr "C:\\malware.exe" /sc onstart /ru system
+2024-01-15 10:35:42 EventID:4688 Process created: net user hacker Password123! /add
+2024-01-15 10:36:18 EventID:4688 Process created: net localgroup administrators hacker /add
+2024-01-15 10:37:05 EventID:4688 Process created: reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Backdoor /t REG_SZ /d "C:\\malware.exe"
+2024-01-15 10:38:22 EventID:4688 Process created: wmic process call create "cmd.exe /c malicious.bat"
+2024-01-15 10:39:10 EventID:4624 Logon Type 3: User Administrator from 192.168.1.100
+2024-01-15 10:40:05 Firewall: Block TCP connection to suspicious-domain.com:443`);
 
   const handleAnalyze = () => {
     if (!logInput.trim()) {
