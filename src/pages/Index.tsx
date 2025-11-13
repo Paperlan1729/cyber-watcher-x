@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Shield } from "lucide-react";
 import { Dashboard } from "@/components/Dashboard";
 import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
-import { detectThreats, Threat } from "@/components/ThreatDetector";
+import { ThreatCorrelationView } from "@/components/ThreatCorrelation";
+import { detectThreats, correlatThreats, Threat } from "@/components/ThreatDetector";
 
 const Index = () => {
   const [threats, setThreats] = useState<Threat[]>([]);
   const [logsCount, setLogsCount] = useState(0);
+
+  const correlations = useMemo(() => correlatThreats(threats), [threats]);
+  const correlatedThreatIds = useMemo(
+    () => correlations.flatMap(c => c.threatIds),
+    [correlations]
+  );
 
   const handleAnalyzeLogs = (logs: string[]) => {
     console.log("Analyzing logs:", logs);
@@ -40,13 +47,16 @@ const Index = () => {
           {/* Dashboard Overview */}
           <Dashboard threats={threats} logsCount={logsCount} />
 
+          {/* Threat Correlation */}
+          <ThreatCorrelationView correlations={correlations} />
+
           {/* Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Log Analyzer */}
             <LogAnalyzer onAnalyze={handleAnalyzeLogs} />
 
             {/* Threat List */}
-            <ThreatList threats={threats} />
+            <ThreatList threats={threats} correlatedThreatIds={correlatedThreatIds} />
           </div>
         </div>
       </main>

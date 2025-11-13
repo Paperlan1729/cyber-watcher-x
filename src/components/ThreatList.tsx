@@ -1,13 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AlertTriangle, Info, AlertCircle, ShieldCheck } from "lucide-react";
+import { AlertTriangle, Info, AlertCircle, ShieldCheck, Network } from "lucide-react";
 import { Threat } from "./ThreatDetector";
 
 interface ThreatListProps {
   threats: Threat[];
+  correlatedThreatIds?: string[];
 }
 
-export const ThreatList = ({ threats }: ThreatListProps) => {
+export const ThreatList = ({ threats, correlatedThreatIds = [] }: ThreatListProps) => {
+  const isCorrelated = (threatId: string) => correlatedThreatIds.includes(threatId);
   const getSeverityIcon = (severity: string) => {
     switch (severity) {
       case "critical":
@@ -43,8 +45,18 @@ export const ThreatList = ({ threats }: ThreatListProps) => {
             threats.map((threat) => (
               <div
                 key={threat.id}
-                className="p-4 rounded-lg border border-border bg-secondary/50 space-y-2"
+                className={`p-4 rounded-lg border space-y-2 ${
+                  isCorrelated(threat.id)
+                    ? "border-warning/50 bg-warning/5"
+                    : "border-border bg-secondary/50"
+                }`}
               >
+                {isCorrelated(threat.id) && (
+                  <div className="flex items-center gap-1 text-xs text-warning mb-2">
+                    <Network className="h-3 w-3" />
+                    <span className="font-medium">Correlated Threat</span>
+                  </div>
+                )}
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2">
                     {getSeverityIcon(threat.severity)}
@@ -53,6 +65,15 @@ export const ThreatList = ({ threats }: ThreatListProps) => {
                   <Badge className={getSeverityBadge(threat.severity)}>
                     {threat.severity.toUpperCase()}
                   </Badge>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <span className="font-mono">{threat.technique}</span>
+                  {threat.campaign && (
+                    <>
+                      <span>•</span>
+                      <span className="font-medium">{threat.campaign}</span>
+                    </>
+                  )}
                 </div>
                 <p className="text-sm text-muted-foreground">{threat.description}</p>
                 <div className="mt-2 p-2 bg-background rounded border border-border">
