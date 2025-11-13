@@ -30,8 +30,10 @@ const MALWARE_PATTERNS = {
 
 export const detectThreats = (logs: string[]): Threat[] => {
   const threats: Threat[] = [];
+  console.log("Starting threat detection for", logs.length, "logs");
 
   logs.forEach((log, index) => {
+    console.log(`Checking log ${index + 1}:`, log.substring(0, 100));
     // Check critical patterns
     for (const { pattern, type, desc } of MALWARE_PATTERNS.critical) {
       if (pattern.test(log)) {

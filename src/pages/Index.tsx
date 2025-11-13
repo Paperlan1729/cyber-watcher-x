@@ -10,7 +10,9 @@ const Index = () => {
   const [logsCount, setLogsCount] = useState(0);
 
   const handleAnalyzeLogs = (logs: string[]) => {
+    console.log("Analyzing logs:", logs);
     const detectedThreats = detectThreats(logs);
+    console.log("Detected threats:", detectedThreats);
     setThreats(prev => [...detectedThreats, ...prev]);
     setLogsCount(prev => prev + logs.length);
   };
