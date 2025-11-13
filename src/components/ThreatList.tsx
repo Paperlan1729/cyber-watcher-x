@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AlertTriangle, Info, AlertCircle } from "lucide-react";
+import { AlertTriangle, Info, AlertCircle, ShieldCheck } from "lucide-react";
 import { Threat } from "./ThreatDetector";
 
 interface ThreatListProps {
@@ -59,6 +59,17 @@ export const ThreatList = ({ threats }: ThreatListProps) => {
                   <code className="text-xs font-mono text-foreground break-all">
                     {threat.logEntry}
                   </code>
+                </div>
+                <div className="mt-3 p-3 bg-primary/5 rounded border border-primary/20">
+                  <div className="flex items-start gap-2">
+                    <ShieldCheck className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-primary mb-1">Mitigation Steps</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {threat.mitigation}
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {new Date(threat.timestamp).toLocaleString()}
