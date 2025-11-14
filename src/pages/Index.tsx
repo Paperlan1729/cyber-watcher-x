@@ -4,6 +4,7 @@ import { Dashboard } from "@/components/Dashboard";
 import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
 import { ThreatCorrelationView } from "@/components/ThreatCorrelation";
+import { IncidentPlaybook } from "@/components/IncidentPlaybook";
 import { detectThreats, correlatThreats, Threat } from "@/components/ThreatDetector";
 
 const Index = () => {
@@ -49,6 +50,9 @@ const Index = () => {
 
           {/* Threat Correlation */}
           <ThreatCorrelationView correlations={correlations} />
+
+          {/* Incident Response Playbooks */}
+          <IncidentPlaybook correlations={correlations} />
 
           {/* Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
