@@ -6,7 +6,12 @@ import { ThreatList } from "@/components/ThreatList";
 import { ThreatCorrelationView } from "@/components/ThreatCorrelation";
 import { IncidentPlaybook } from "@/components/IncidentPlaybook";
 import { AutomatedWorkflow } from "@/components/AutomatedWorkflow";
+import { AgentManager } from "@/components/AgentManager";
+import { AlertConfiguration } from "@/components/AlertConfiguration";
+import { ReportGenerator } from "@/components/ReportGenerator";
+import { ArchitectureDocumentation } from "@/components/ArchitectureDocumentation";
 import { detectThreats, correlatThreats, Threat } from "@/components/ThreatDetector";
+import { toast } from "sonner";
 
 const Index = () => {
   const [threats, setThreats] = useState<Threat[]>([]);
@@ -24,6 +29,24 @@ const Index = () => {
     console.log("Detected threats:", detectedThreats);
     setThreats(prev => [...detectedThreats, ...prev]);
     setLogsCount(prev => prev + logs.length);
+  };
+
+  const handleIsolateAgent = (agentId: string) => {
+    toast.success(`Isolation command sent to ${agentId}`, {
+      description: "Device will be quarantined from network within 30 seconds"
+    });
+  };
+
+  const handleUnIsolateAgent = (agentId: string) => {
+    toast.success(`Device ${agentId} restored to network`, {
+      description: "Agent connectivity re-established"
+    });
+  };
+
+  const handleCollectEvidence = (agentId: string) => {
+    toast.success(`Evidence collection initiated for ${agentId}`, {
+      description: "Memory snapshot and logs being collected"
+    });
   };
 
   return (
@@ -49,6 +72,16 @@ const Index = () => {
           {/* Dashboard Overview */}
           <Dashboard threats={threats} logsCount={logsCount} />
 
+          {/* Agent Manager - Multi-Device Monitoring */}
+          <AgentManager 
+            onIsolateAgent={handleIsolateAgent}
+            onUnIsolateAgent={handleUnIsolateAgent}
+            onCollectEvidence={handleCollectEvidence}
+          />
+
+          {/* Architecture Documentation */}
+          <ArchitectureDocumentation />
+
           {/* Automated Workflow Pipeline */}
           <AutomatedWorkflow correlations={correlations} />
 
@@ -57,6 +90,12 @@ const Index = () => {
 
           {/* Incident Response Playbooks */}
           <IncidentPlaybook correlations={correlations} />
+
+          {/* Alert Configuration */}
+          <AlertConfiguration />
+
+          {/* Report Generator */}
+          <ReportGenerator threats={threats} />
 
           {/* Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
