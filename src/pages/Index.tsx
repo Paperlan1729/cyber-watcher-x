@@ -5,6 +5,7 @@ import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
 import { ThreatCorrelationView } from "@/components/ThreatCorrelation";
 import { IncidentPlaybook } from "@/components/IncidentPlaybook";
+import { AutomatedWorkflow } from "@/components/AutomatedWorkflow";
 import { detectThreats, correlatThreats, Threat } from "@/components/ThreatDetector";
 
 const Index = () => {
@@ -47,6 +48,9 @@ const Index = () => {
         <div className="space-y-8">
           {/* Dashboard Overview */}
           <Dashboard threats={threats} logsCount={logsCount} />
+
+          {/* Automated Workflow Pipeline */}
+          <AutomatedWorkflow correlations={correlations} />
 
           {/* Threat Correlation */}
           <ThreatCorrelationView correlations={correlations} />
