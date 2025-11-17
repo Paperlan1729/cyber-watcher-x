@@ -1,17 +1,19 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, lazy, Suspense } from "react";
 import { Shield } from "lucide-react";
 import { Dashboard } from "@/components/Dashboard";
 import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
-import { ThreatCorrelationView } from "@/components/ThreatCorrelation";
-import { IncidentPlaybook } from "@/components/IncidentPlaybook";
-import { AutomatedWorkflow } from "@/components/AutomatedWorkflow";
 import { AgentManager } from "@/components/AgentManager";
-import { AlertConfiguration } from "@/components/AlertConfiguration";
-import { ReportGenerator } from "@/components/ReportGenerator";
-import { ArchitectureDocumentation } from "@/components/ArchitectureDocumentation";
 import { detectThreats, correlatThreats, Threat } from "@/components/ThreatDetector";
 import { toast } from "sonner";
+
+// Lazy load below-the-fold components
+const ThreatCorrelationView = lazy(() => import("@/components/ThreatCorrelation").then(m => ({ default: m.ThreatCorrelationView })));
+const IncidentPlaybook = lazy(() => import("@/components/IncidentPlaybook").then(m => ({ default: m.IncidentPlaybook })));
+const AutomatedWorkflow = lazy(() => import("@/components/AutomatedWorkflow").then(m => ({ default: m.AutomatedWorkflow })));
+const AlertConfiguration = lazy(() => import("@/components/AlertConfiguration").then(m => ({ default: m.AlertConfiguration })));
+const ReportGenerator = lazy(() => import("@/components/ReportGenerator").then(m => ({ default: m.ReportGenerator })));
+const ArchitectureDocumentation = lazy(() => import("@/components/ArchitectureDocumentation").then(m => ({ default: m.ArchitectureDocumentation })));
 
 const Index = () => {
   const [threats, setThreats] = useState<Threat[]>([]);
@@ -80,22 +82,34 @@ const Index = () => {
           />
 
           {/* Architecture Documentation */}
-          <ArchitectureDocumentation />
+          <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
+            <ArchitectureDocumentation />
+          </Suspense>
 
           {/* Automated Workflow Pipeline */}
-          <AutomatedWorkflow correlations={correlations} />
+          <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
+            <AutomatedWorkflow correlations={correlations} />
+          </Suspense>
 
           {/* Threat Correlation */}
-          <ThreatCorrelationView correlations={correlations} />
+          <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
+            <ThreatCorrelationView correlations={correlations} />
+          </Suspense>
 
           {/* Incident Response Playbooks */}
-          <IncidentPlaybook correlations={correlations} />
+          <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
+            <IncidentPlaybook correlations={correlations} />
+          </Suspense>
 
           {/* Alert Configuration */}
-          <AlertConfiguration />
+          <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
+            <AlertConfiguration />
+          </Suspense>
 
           {/* Report Generator */}
-          <ReportGenerator threats={threats} />
+          <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
+            <ReportGenerator threats={threats} />
+          </Suspense>
 
           {/* Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
