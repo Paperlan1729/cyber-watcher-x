@@ -13,7 +13,7 @@ export const Dashboard = ({ threats, logsCount }: DashboardProps) => {
   const totalThreats = threats.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" style={{ contain: 'layout' }}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="border-border bg-card">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
