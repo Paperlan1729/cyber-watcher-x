@@ -24,8 +24,9 @@ export const ThreatChart = ({ threats }: ThreatChartProps) => {
   }, [threats]);
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart data={chartData}>
+    <div style={{ width: '100%', height: 300, contain: 'layout style paint', contentVisibility: 'auto' }}>
+      <ResponsiveContainer width="100%" height={300} debounce={50}>
+        <LineChart data={chartData}>
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
         <XAxis 
           dataKey="time" 
@@ -67,6 +68,7 @@ export const ThreatChart = ({ threats }: ThreatChartProps) => {
           dot={{ fill: 'hsl(var(--primary))' }}
         />
       </LineChart>
-    </ResponsiveContainer>
+      </ResponsiveContainer>
+    </div>
   );
 };
