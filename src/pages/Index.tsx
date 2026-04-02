@@ -1,5 +1,8 @@
 import { useState, useMemo, lazy, Suspense } from "react";
-import { Shield } from "lucide-react";
+import { Shield, LogOut, User } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Dashboard } from "@/components/Dashboard";
 import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
@@ -16,6 +19,7 @@ const ReportGenerator = lazy(() => import("@/components/ReportGenerator").then(m
 const ArchitectureDocumentation = lazy(() => import("@/components/ArchitectureDocumentation").then(m => ({ default: m.ArchitectureDocumentation })));
 
 const Index = () => {
+  const { user, roles, signOut } = useAuth();
   const [threats, setThreats] = useState<Threat[]>([]);
   const [logsCount, setLogsCount] = useState(0);
 
@@ -56,13 +60,29 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <Shield className="h-6 w-6 text-primary" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Shield className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-foreground">CyberGuard SIEM</h1>
+                <p className="text-sm text-muted-foreground">Advanced Malware Detection & Log Analysis</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">CyberGuard SIEM</h1>
-              <p className="text-sm text-muted-foreground">Advanced Malware Detection & Log Analysis</p>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <User className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-foreground">{user?.email}</span>
+                {roles.map(role => (
+                  <Badge key={role} variant={role === 'admin' ? 'destructive' : role === 'analyst' ? 'default' : 'secondary'} className="text-xs">
+                    {role}
+                  </Badge>
+                ))}
+              </div>
+              <Button variant="ghost" size="sm" onClick={signOut}>
+                <LogOut className="h-4 w-4 mr-1" /> Sign Out
+              </Button>
             </div>
           </div>
         </div>
