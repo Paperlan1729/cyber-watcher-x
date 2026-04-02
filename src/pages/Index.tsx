@@ -1,5 +1,8 @@
 import { useState, useMemo, lazy, Suspense } from "react";
-import { Shield } from "lucide-react";
+import { Shield, LogOut, User } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Dashboard } from "@/components/Dashboard";
 import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
