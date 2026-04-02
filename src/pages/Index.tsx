@@ -19,6 +19,7 @@ const ReportGenerator = lazy(() => import("@/components/ReportGenerator").then(m
 const ArchitectureDocumentation = lazy(() => import("@/components/ArchitectureDocumentation").then(m => ({ default: m.ArchitectureDocumentation })));
 
 const Index = () => {
+  const { user, roles, signOut } = useAuth();
   const [threats, setThreats] = useState<Threat[]>([]);
   const [logsCount, setLogsCount] = useState(0);
 
