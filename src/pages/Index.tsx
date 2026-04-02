@@ -60,13 +60,29 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <Shield className="h-6 w-6 text-primary" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Shield className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-foreground">CyberGuard SIEM</h1>
+                <p className="text-sm text-muted-foreground">Advanced Malware Detection & Log Analysis</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">CyberGuard SIEM</h1>
-              <p className="text-sm text-muted-foreground">Advanced Malware Detection & Log Analysis</p>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <User className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-foreground">{user?.email}</span>
+                {roles.map(role => (
+                  <Badge key={role} variant={role === 'admin' ? 'destructive' : role === 'analyst' ? 'default' : 'secondary'} className="text-xs">
+                    {role}
+                  </Badge>
+                ))}
+              </div>
+              <Button variant="ghost" size="sm" onClick={signOut}>
+                <LogOut className="h-4 w-4 mr-1" /> Sign Out
+              </Button>
             </div>
           </div>
         </div>
