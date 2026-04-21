@@ -66,8 +66,8 @@ const Index = () => {
                 <Shield className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">CyberGuard SIEM</h1>
-                <p className="text-sm text-muted-foreground">Advanced Malware Detection & Log Analysis</p>
+                <h1 className="text-2xl font-bold text-foreground">PaperLAN.io</h1>
+                <p className="text-sm text-muted-foreground">Advanced SIEM • Malware Detection & Log Analysis</p>
               </div>
             </div>
             <div className="flex items-center gap-3">

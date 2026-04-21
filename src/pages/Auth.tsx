@@ -98,7 +98,7 @@ export default function Auth() {
               <Shield className="h-8 w-8 text-primary" />
             </div>
           </div>
-          <CardTitle className="text-2xl text-foreground">CyberGuard SIEM</CardTitle>
+          <CardTitle className="text-2xl text-foreground">PaperLAN.io</CardTitle>
           <CardDescription className="text-muted-foreground">
             Security Information & Event Management
           </CardDescription>
