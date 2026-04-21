@@ -8,6 +8,7 @@ import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
 import { AgentManager } from "@/components/AgentManager";
 import { AgentDeployment } from "@/components/AgentDeployment";
+import { LogViewer } from "@/components/LogViewer";
 import { detectThreats, correlatThreats, Threat } from "@/components/ThreatDetector";
 import { toast } from "sonner";
 
@@ -104,6 +105,9 @@ const Index = () => {
 
           {/* Agent Deployment - OS-specific enrollment commands */}
           <AgentDeployment />
+
+          {/* Live Endpoint Logs streamed from enrolled agents */}
+          <LogViewer />
 
           {/* Architecture Documentation */}
           <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
