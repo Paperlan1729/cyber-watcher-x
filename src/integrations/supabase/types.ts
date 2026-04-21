@@ -14,6 +14,50 @@ export type Database = {
   }
   public: {
     Tables: {
+      agent_logs: {
+        Row: {
+          agent_id: string | null
+          created_at: string
+          event_time: string
+          hostname: string
+          id: string
+          level: string
+          message: string
+          raw: Json | null
+          source: string
+        }
+        Insert: {
+          agent_id?: string | null
+          created_at?: string
+          event_time?: string
+          hostname: string
+          id?: string
+          level?: string
+          message: string
+          raw?: Json | null
+          source: string
+        }
+        Update: {
+          agent_id?: string | null
+          created_at?: string
+          event_time?: string
+          hostname?: string
+          id?: string
+          level?: string
+          message?: string
+          raw?: Json | null
+          source?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_logs_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       agents: {
         Row: {
           agent_version: string | null
@@ -53,6 +97,33 @@ export type Database = {
           subnet?: string | null
           tags?: string[] | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      enrollment_keys: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          group_name: string
+          id: string
+          key: string
+          revoked: boolean
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          group_name?: string
+          id?: string
+          key: string
+          revoked?: boolean
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          group_name?: string
+          id?: string
+          key?: string
+          revoked?: boolean
         }
         Relationships: []
       }
