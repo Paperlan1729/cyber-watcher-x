@@ -203,9 +203,9 @@ export const ArchitectureDocumentation = () => {
                   SOC admin downloads platform-specific agent installer:
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
-                  <li>Windows: cyberguard-agent-win64-v4.5.2.msi</li>
-                  <li>Linux: cyberguard-agent-linux-v4.5.2.deb / .rpm</li>
-                  <li>macOS: cyberguard-agent-macos-v4.5.2.pkg</li>
+                  <li>Windows: paperlan-agent-win64-v4.5.2.msi</li>
+                  <li>Linux: paperlan-agent-linux-v4.5.2.deb / .rpm</li>
+                  <li>macOS: paperlan-agent-macos-v4.5.2.pkg</li>
                 </ul>
               </div>
 
