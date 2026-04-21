@@ -7,6 +7,7 @@ import { Dashboard } from "@/components/Dashboard";
 import { LogAnalyzer } from "@/components/LogAnalyzer";
 import { ThreatList } from "@/components/ThreatList";
 import { AgentManager } from "@/components/AgentManager";
+import { AgentDeployment } from "@/components/AgentDeployment";
 import { detectThreats, correlatThreats, Threat } from "@/components/ThreatDetector";
 import { toast } from "sonner";
 
@@ -100,6 +101,9 @@ const Index = () => {
             onUnIsolateAgent={handleUnIsolateAgent}
             onCollectEvidence={handleCollectEvidence}
           />
+
+          {/* Agent Deployment - OS-specific enrollment commands */}
+          <AgentDeployment />
 
           {/* Architecture Documentation */}
           <Suspense fallback={<div className="h-32 animate-pulse bg-muted rounded-lg" />}>
