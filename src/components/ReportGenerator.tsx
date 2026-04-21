@@ -30,7 +30,7 @@ export const ReportGenerator = ({ threats, agents = [] }: ReportGeneratorProps) 
         executive_summary: {
           total_threats: threats.length,
           critical_threats: threats.filter(t => t.severity === "critical").length,
-          affected_devices: agents.filter(a => a.threatsDetected > 0).length,
+          affected_devices: agents.filter(a => a.status !== "active").length,
           total_agents: agents.length,
           isolated_devices: agents.filter(a => a.status === "isolated").length,
           investigation_status: "ACTIVE"
@@ -42,13 +42,12 @@ export const ReportGenerator = ({ threats, agents = [] }: ReportGeneratorProps) 
           description: t.description,
           logEntry: t.logEntry
         })),
-        affected_systems: agents.filter(a => a.threatsDetected > 0).map(a => ({
+        affected_systems: agents.map(a => ({
           hostname: a.hostname,
-          ipv4: a.ipv4,
+          ipv4: a.ip_address,
           os: a.os,
-          threats_detected: a.threatsDetected,
-          health_score: a.healthScore,
-          status: a.status
+          status: a.status,
+          last_heartbeat: a.last_heartbeat
         })),
         indicators_of_compromise: {
           malicious_ips: ["203.0.113.45", "198.51.100.23"],
