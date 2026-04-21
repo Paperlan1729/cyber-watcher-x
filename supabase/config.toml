@@ -1,1 +1,4 @@
 project_id = "iejshqhmbhgegbqyjwft"
+
+[functions.ingest-log]
+verify_jwt = false
