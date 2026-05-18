@@ -43,6 +43,7 @@ export default function ResetPassword() {
           <title>Reset Password - PaperLAN.io</title>
           <meta name="description" content="Reset your PaperLAN.io account password to regain access to the SOC dashboard." />
           <link rel="canonical" href="https://cyber-watcher-x.lovable.app/reset-password" />
+          <meta property="og:image" content="https://cyber-watcher-x.lovable.app/og-image.png" />
         </Helmet>
         <div className="min-h-screen flex items-center justify-center bg-background p-4">
           <Card className="w-full max-w-md">
