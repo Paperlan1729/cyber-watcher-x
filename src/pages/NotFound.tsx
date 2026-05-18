@@ -18,6 +18,7 @@ const NotFound = () => {
         <meta property="og:title" content="404 Not Found - PaperLAN.io" />
         <meta property="og:description" content="Page not found on PaperLAN.io." />
         <meta property="og:url" content="https://cyber-watcher-x.lovable.app/404" />
+        <meta property="og:image" content="https://cyber-watcher-x.lovable.app/og-image.png" />
       </Helmet>
       <div className="flex min-h-screen items-center justify-center bg-muted">
       <div className="text-center">

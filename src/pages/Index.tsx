@@ -67,6 +67,7 @@ const Index = () => {
         <meta property="og:title" content="PaperLAN.io - Advanced SIEM & Malware Detection" />
         <meta property="og:description" content="Professional SIEM platform for detecting malware through Windows Event logs, Firewall logs, and EDR approaches like Sysmon." />
         <meta property="og:url" content="https://cyber-watcher-x.lovable.app/" />
+        <meta property="og:image" content="https://cyber-watcher-x.lovable.app/og-image.png" />
       </Helmet>
       <div className="min-h-screen bg-background">
       {/* Header */}
