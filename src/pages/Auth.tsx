@@ -91,7 +91,16 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <>
+      <Helmet>
+        <title>Sign In - PaperLAN.io</title>
+        <meta name="description" content="Sign in or create an account on PaperLAN.io to access the SOC dashboard for threat detection and incident response." />
+        <link rel="canonical" href="https://cyber-watcher-x.lovable.app/auth" />
+        <meta property="og:title" content="Sign In - PaperLAN.io" />
+        <meta property="og:description" content="Secure access to PaperLAN.io's cybersecurity operations platform." />
+        <meta property="og:url" content="https://cyber-watcher-x.lovable.app/auth" />
+      </Helmet>
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="text-center space-y-2">
           <div className="flex justify-center">
