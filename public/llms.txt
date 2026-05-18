@@ -1,0 +1,11 @@
+# PaperLAN / Cyber Watcher X
+
+> A dark-themed cybersecurity SOC dashboard for defensive operations — threat detection, log correlation, incident response playbooks, and endpoint agent management.
+
+## Pages
+
+- [Home](/): Cybersecurity operations dashboard with threat monitoring, log analysis, and incident response tools.
+
+## Optional
+
+- [Auth](/auth): Authentication page for sign-in and registration.
