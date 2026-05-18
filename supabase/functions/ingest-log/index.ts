@@ -58,8 +58,14 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Upsert agent by hostname
-    const ip = body.ip_address || "0.0.0.0";
+    // Validate & sanitize inputs
+    const hostname = String(body.hostname).slice(0, 253);
+    const os = String(body.os).slice(0, 200);
+    const agentVersion = body.agent_version ? String(body.agent_version).slice(0, 100) : null;
+    const ipv4 = /^(\d{1,3}\.){3}\d{1,3}$/;
+    const ipv6 = /^[0-9a-fA-F:]+$/;
+    const rawIp = body.ip_address ?? "";
+    const ip = (ipv4.test(rawIp) || (ipv6.test(rawIp) && rawIp.includes(":"))) ? rawIp : "0.0.0.0";
     const { data: existing } = await supabase
       .from("agents").select("id").eq("hostname", body.hostname).maybeSingle();
 
