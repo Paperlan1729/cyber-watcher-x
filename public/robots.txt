@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://cyber-watcher-x.lovable.app/sitemap.xml
