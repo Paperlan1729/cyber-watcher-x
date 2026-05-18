@@ -59,7 +59,16 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <Helmet>
+        <title>PaperLAN.io - Advanced SIEM & Malware Detection</title>
+        <meta name="description" content="PaperLAN.io is a professional SIEM platform for detecting malware through Windows Event logs, Firewall logs, and EDR approaches like Sysmon." />
+        <link rel="canonical" href="https://cyber-watcher-x.lovable.app/" />
+        <meta property="og:title" content="PaperLAN.io - Advanced SIEM & Malware Detection" />
+        <meta property="og:description" content="Professional SIEM platform for detecting malware through Windows Event logs, Firewall logs, and EDR approaches like Sysmon." />
+        <meta property="og:url" content="https://cyber-watcher-x.lovable.app/" />
+      </Helmet>
+      <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4">
