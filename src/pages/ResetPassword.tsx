@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Shield, Lock } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Shield, Lock } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState('');
@@ -37,18 +38,34 @@ export default function ResetPassword() {
 
   if (!isRecovery) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <Card className="w-full max-w-md">
-          <CardContent className="pt-6 text-center text-muted-foreground">
-            Invalid or expired reset link. Please request a new one.
-          </CardContent>
-        </Card>
-      </div>
+      <>
+        <Helmet>
+          <title>Reset Password - PaperLAN.io</title>
+          <meta name="description" content="Reset your PaperLAN.io account password to regain access to the SOC dashboard." />
+          <link rel="canonical" href="https://cyber-watcher-x.lovable.app/reset-password" />
+        </Helmet>
+        <div className="min-h-screen flex items-center justify-center bg-background p-4">
+          <Card className="w-full max-w-md">
+            <CardContent className="pt-6 text-center text-muted-foreground">
+              Invalid or expired reset link. Please request a new one.
+            </CardContent>
+          </Card>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <>
+      <Helmet>
+        <title>Reset Password - PaperLAN.io</title>
+        <meta name="description" content="Set a new password for your PaperLAN.io account." />
+        <link rel="canonical" href="https://cyber-watcher-x.lovable.app/reset-password" />
+        <meta property="og:title" content="Reset Password - PaperLAN.io" />
+        <meta property="og:description" content="Securely reset your PaperLAN.io account password." />
+        <meta property="og:url" content="https://cyber-watcher-x.lovable.app/reset-password" />
+      </Helmet>
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="text-center">
           <Shield className="h-8 w-8 text-primary mx-auto mb-2" />
@@ -70,5 +87,6 @@ export default function ResetPassword() {
         </CardContent>
       </Card>
     </div>
+  </>
   );
 }

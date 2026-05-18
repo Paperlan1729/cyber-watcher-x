@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
-import { lovable } from '@/integrations/lovable/index';
-import { useAuth } from '@/hooks/useAuth';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Shield, Mail, Lock, User, AlertCircle } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Shield, Mail, Lock, User, AlertCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Auth() {
   const { user, loading } = useAuth();
@@ -90,7 +91,16 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <>
+      <Helmet>
+        <title>Sign In - PaperLAN.io</title>
+        <meta name="description" content="Sign in or create an account on PaperLAN.io to access the SOC dashboard for threat detection and incident response." />
+        <link rel="canonical" href="https://cyber-watcher-x.lovable.app/auth" />
+        <meta property="og:title" content="Sign In - PaperLAN.io" />
+        <meta property="og:description" content="Secure access to PaperLAN.io's cybersecurity operations platform." />
+        <meta property="og:url" content="https://cyber-watcher-x.lovable.app/auth" />
+      </Helmet>
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="text-center space-y-2">
           <div className="flex justify-center">
@@ -194,5 +204,6 @@ export default function Auth() {
         </CardContent>
       </Card>
     </div>
+  </>
   );
 }
