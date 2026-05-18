@@ -65,6 +65,7 @@ export default function ResetPassword() {
         <meta property="og:title" content="Reset Password - PaperLAN.io" />
         <meta property="og:description" content="Securely reset your PaperLAN.io account password." />
         <meta property="og:url" content="https://cyber-watcher-x.lovable.app/reset-password" />
+        <meta property="og:image" content="https://cyber-watcher-x.lovable.app/og-image.png" />
       </Helmet>
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md border-border bg-card">
