@@ -99,6 +99,7 @@ export default function Auth() {
         <meta property="og:title" content="Sign In - PaperLAN.io" />
         <meta property="og:description" content="Secure access to PaperLAN.io's cybersecurity operations platform." />
         <meta property="og:url" content="https://cyber-watcher-x.lovable.app/auth" />
+        <meta property="og:image" content="https://cyber-watcher-x.lovable.app/og-image.png" />
       </Helmet>
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md border-border bg-card">
