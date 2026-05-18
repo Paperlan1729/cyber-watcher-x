@@ -38,18 +38,34 @@ export default function ResetPassword() {
 
   if (!isRecovery) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background p-4">
-        <Card className="w-full max-w-md">
-          <CardContent className="pt-6 text-center text-muted-foreground">
-            Invalid or expired reset link. Please request a new one.
-          </CardContent>
-        </Card>
-      </div>
+      <>
+        <Helmet>
+          <title>Reset Password - PaperLAN.io</title>
+          <meta name="description" content="Reset your PaperLAN.io account password to regain access to the SOC dashboard." />
+          <link rel="canonical" href="https://cyber-watcher-x.lovable.app/reset-password" />
+        </Helmet>
+        <div className="min-h-screen flex items-center justify-center bg-background p-4">
+          <Card className="w-full max-w-md">
+            <CardContent className="pt-6 text-center text-muted-foreground">
+              Invalid or expired reset link. Please request a new one.
+            </CardContent>
+          </Card>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <>
+      <Helmet>
+        <title>Reset Password - PaperLAN.io</title>
+        <meta name="description" content="Set a new password for your PaperLAN.io account." />
+        <link rel="canonical" href="https://cyber-watcher-x.lovable.app/reset-password" />
+        <meta property="og:title" content="Reset Password - PaperLAN.io" />
+        <meta property="og:description" content="Securely reset your PaperLAN.io account password." />
+        <meta property="og:url" content="https://cyber-watcher-x.lovable.app/reset-password" />
+      </Helmet>
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md border-border bg-card">
         <CardHeader className="text-center">
           <Shield className="h-8 w-8 text-primary mx-auto mb-2" />
