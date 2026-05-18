@@ -67,17 +67,17 @@ Deno.serve(async (req) => {
     const rawIp = body.ip_address ?? "";
     const ip = (ipv4.test(rawIp) || (ipv6.test(rawIp) && rawIp.includes(":"))) ? rawIp : "0.0.0.0";
     const { data: existing } = await supabase
-      .from("agents").select("id").eq("hostname", body.hostname).maybeSingle();
+      .from("agents").select("id").eq("hostname", hostname).maybeSingle();
 
     let agentId = existing?.id;
     if (!agentId) {
       const { data: inserted, error: insErr } = await supabase
         .from("agents")
         .insert({
-          hostname: body.hostname,
-          os: body.os,
+          hostname,
+          os,
           ip_address: ip,
-          agent_version: body.agent_version ?? null,
+          agent_version: agentVersion,
           status: "active",
           last_heartbeat: new Date().toISOString(),
           tags: [keyRow.group_name],
@@ -89,21 +89,24 @@ Deno.serve(async (req) => {
       await supabase.from("agents").update({
         last_heartbeat: new Date().toISOString(),
         status: "active",
-        agent_version: body.agent_version ?? null,
+        agent_version: agentVersion,
         ip_address: ip,
       }).eq("id", agentId);
     }
 
     // Insert events
-    const rows = body.events.slice(0, 500).map((e) => ({
-      agent_id: agentId,
-      hostname: body.hostname,
-      source: e.source ?? "unknown",
-      level: (e.level ?? "info").toLowerCase(),
-      message: (e.message ?? "").slice(0, 8000),
-      raw: e.raw ?? null,
-      event_time: e.event_time ?? new Date().toISOString(),
-    }));
+    const rows = body.events.slice(0, 500).map((e) => {
+      const t = e.event_time ? Date.parse(e.event_time) : NaN;
+      return {
+        agent_id: agentId,
+        hostname,
+        source: String(e.source ?? "unknown").slice(0, 200),
+        level: String(e.level ?? "info").toLowerCase().slice(0, 20),
+        message: String(e.message ?? "").slice(0, 8000),
+        raw: e.raw ?? null,
+        event_time: Number.isFinite(t) ? new Date(t).toISOString() : new Date().toISOString(),
+      };
+    });
 
     if (rows.length > 0) {
       const { error: logErr } = await supabase.from("agent_logs").insert(rows);
