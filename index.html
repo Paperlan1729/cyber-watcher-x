@@ -24,7 +24,38 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@PaperLAN" />
     <meta name="twitter:image" content="https://cyber-watcher-x.lovable.app/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://cyber-watcher-x.lovable.app/#organization",
+            "name": "PaperLAN.io",
+            "url": "https://cyber-watcher-x.lovable.app/",
+            "logo": "https://cyber-watcher-x.lovable.app/og-image.png"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://cyber-watcher-x.lovable.app/#website",
+            "url": "https://cyber-watcher-x.lovable.app/",
+            "name": "PaperLAN.io",
+            "publisher": { "@id": "https://cyber-watcher-x.lovable.app/#organization" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "PaperLAN.io",
+            "applicationCategory": "SecurityApplication",
+            "operatingSystem": "Web, Windows, Linux, macOS",
+            "description": "Professional SIEM platform for detecting malware through Windows Event logs, Firewall logs, and EDR approaches like Sysmon.",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          }
+        ]
+      }
+    </script>
   </head>
+
 
   <body>
     <div id="root"></div>
